@@ -1,7 +1,5 @@
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-
-const generateHtml = () => {
+//@flow
+const generateHtml = (clientStats) => {
   return [
     '<!doctype html>',
     '<html>',
@@ -17,8 +15,8 @@ const generateHtml = () => {
   ]
     .filter((h) => !!h)
     .join('');
-}
+};
 
 export default ({ clientStats }) => (req, res) => {
-  res.send(generateHtml());
+  res.send(generateHtml(clientStats));
 };

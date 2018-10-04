@@ -4,13 +4,9 @@ const babelLoader = {
   use: 'babel-loader',
 };
 
-const clientDev = [
-  babelLoader,
-];
+const clientDev = [babelLoader];
 
-const serverDev = [
-  babelLoader,
-];
+const serverDev = [babelLoader];
 
 module.exports = {
   client: {
@@ -19,5 +15,6 @@ module.exports = {
   },
   server: {
     dev: serverDev,
+    prod: serverDev,
   },
 };
