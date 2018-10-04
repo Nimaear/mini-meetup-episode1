@@ -1,0 +1,43 @@
+{
+  "name": "mini-meetup-episode-1",
+  "description": "Webpack base for server side rendering react",
+  "version": "0.0.1",
+  "main": "server/index.js",
+  "author": "Özgür Ayten <ozgur.ayten@tele2.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development node server/index.js"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "express-no-favicons": "0.0.1",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-helmet": "^5.2.0",
+    "webpack": "4.16.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-proposal-decorators": "^7.0.0",
+    "@babel/plugin-proposal-export-namespace-from": "^7.0.0",
+    "@babel/plugin-proposal-function-sent": "^7.0.0",
+    "@babel/plugin-proposal-json-strings": "^7.0.0",
+    "@babel/plugin-proposal-numeric-separator": "^7.0.0",
+    "@babel/plugin-proposal-throw-expressions": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/plugin-syntax-import-meta": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-flow": "^7.0.0-beta.44",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.0",
+    "cross-env": "^5.2.0",
+    "webpack-hot-middleware": "^2.22.3",
+    "webpack-hot-server-middleware": "^0.5.0",
+    "write-file-webpack-plugin": "^4.3.2",
+    "webpack-dev-middleware": "^3.1.3"
+  }
+}
