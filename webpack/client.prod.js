@@ -1,6 +1,5 @@
 const path = require('path');
-const webpack = require('webpack');
-const { resolve, rules } = require('./config');
+const { resolve, rules, plugins } = require('./config');
 
 module.exports = {
   name: 'client',
@@ -19,14 +18,5 @@ module.exports = {
     rules: rules.client.prod,
   },
   resolve,
-  plugins: [
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production'),
-      },
-    }),
-    new webpack.HashedModuleIdsPlugin(), // not needed for strategy to work (just good practice)
-  ],
+  plugins: plugins.client.prod,
 };

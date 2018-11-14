@@ -1,6 +1,5 @@
 const path = require('path');
-const webpack = require('webpack');
-const { resolve, rules } = require('./config');
+const { resolve, rules, plugins } = require('./config');
 
 const res = (p) => path.resolve(__dirname, p);
 
@@ -21,17 +20,5 @@ module.exports = {
     rules: rules.server.prod,
   },
   resolve,
-  plugins: [
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.LimitChunkCountPlugin({
-      maxChunks: 1,
-    }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production'),
-      },
-    }),
-    new webpack.HashedModuleIdsPlugin(),
-  ],
+  plugins: plugins.server.prod,
 };
