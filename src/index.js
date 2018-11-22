@@ -5,8 +5,8 @@ import { Provider } from 'react-redux';
 import App from 'components/App';
 import { configureStore } from 'store';
 
-const store = configureStore({
-  initialState: {},
+const { store } = configureStore({
+  initialState: typeof window !== 'undefined' ? window.__INITIAL_DATA__.state : {},
   middleware: [],
 });
 

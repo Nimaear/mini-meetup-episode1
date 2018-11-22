@@ -2,25 +2,14 @@
 import * as React from 'react';
 import { renderToString } from 'react-dom/server';
 import App from 'components/App';
-import axios from 'axios';
 import { flushChunkNames } from 'react-universal-component/server';
 import flushChunks from 'webpack-flush-chunks';
 import Helmet from 'react-helmet';
 import { Provider } from 'react-redux';
 import { configureStore } from 'store';
 
-const generateHtml = (clientStats) => {
-  const store = configureStore({
-    initialState: {},
-    middleware: [],
-  });
-
+const generateHtml = (clientStats, store, app) => {
   const chunkNames = flushChunkNames();
-  const app = (
-    <Provider store={store}>
-      <App />
-    </Provider>
-  );
   const { js, styles, cssHash } = flushChunks(clientStats, { chunkNames });
   const head = Helmet.renderStatic();
 
@@ -54,5 +43,15 @@ const generateHtml = (clientStats) => {
 };
 
 export default ({ clientStats }) => (req, res) => {
-  res.send(generateHtml(clientStats));
+  const { store } = configureStore({
+    initialState: {},
+    middleware: [],
+  });
+
+  const app = (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+  res.send(generateHtml(clientStats, store, app));
 };
