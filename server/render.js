@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { renderToString } from 'react-dom/server';
 import App from 'components/App';
+import { StaticRouter } from 'react-router-dom';
 import { flushChunkNames } from 'react-universal-component/server';
 import flushChunks from 'webpack-flush-chunks';
 import Helmet from 'react-helmet';
@@ -23,6 +24,7 @@ const generateHtml = (clientStats, store, app) => {
     '<head>',
     '<meta charset="utf-8">',
     '<meta name="viewport" content="width=device-width, initial-scale=1" />',
+    '<link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700" rel="stylesheet">',
     head.base.toString(),
     head.title.toString(),
     head.meta.toString(),
@@ -43,15 +45,22 @@ const generateHtml = (clientStats, store, app) => {
 };
 
 export default ({ clientStats }) => (req, res) => {
-  const { store } = configureStore({
+  const store = configureStore({
     initialState: {},
     middleware: [],
   });
+  const { url } = req;
+  const context = {};
 
   const app = (
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <StaticRouter location={url} context={context}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </StaticRouter>
   );
-  res.send(generateHtml(clientStats, store, app));
+  renderToString(app);
+  store.finishAllPendingTasks().then(() => {
+    res.send(generateHtml(clientStats, store, app));
+  });
 };

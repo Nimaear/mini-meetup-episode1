@@ -6,17 +6,23 @@
   "author": "Özgür Ayten <ozgur.ayten@tele2.com>",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env NODE_ENV=development node server/index.js"
+    "start": "cross-env NODE_ENV=development node server/index.js",
+    "start:prod": "cross-env NODE_ENV=production node server/index.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "cssnano": "^4.1.7",
     "express": "^4.16.3",
     "express-no-favicons": "0.0.1",
     "immer": "^1.7.4",
+    "postcss-css-reset": "^1.0.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-helmet": "^5.2.0",
     "react-redux": "^5.1.1",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "recompose": "^0.30.0",
     "redux": "^4.0.1",
     "redux-saga": "^0.16.2",
     "webpack": "4.16.1"
@@ -61,11 +67,11 @@
     "flow-bin": "^0.82.0",
     "postcss-each": "^0.10.0",
     "postcss-easy-media-query": "^1.0.0",
+    "postcss-flexbugs-fixes": "^4.1.0",
+    "postcss-import": "^12.0.1",
     "postcss-loader": "^3.0.0",
     "postcss-nested": "^4.1.0",
     "postcss-preset-env": "^6.4.0",
-    "postcss-flexbugs-fixes": "^4.1.0",
-    "postcss-import": "^12.0.1",
     "prettier": "^1.12.0",
     "react-universal-component": "^3.0.3",
     "regenerator-runtime": "^0.12.1",

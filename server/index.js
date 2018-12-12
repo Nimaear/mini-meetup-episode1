@@ -19,9 +19,9 @@ let isBuilt = false;
 
 const done = () => {
   if (!isBuilt) {
-    app.listen(3001, () => {
+    app.listen(4001, () => {
       isBuilt = true;
-      console.log('BUILD COMPLETE -- Listening @ http://localhost:3001');
+      console.log('BUILD COMPLETE -- Listening @ http://localhost:4001');
     });
   }
 };

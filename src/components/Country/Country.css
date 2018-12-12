@@ -1,0 +1,11 @@
+.list {
+  margin: 8px;
+
+  .listElement {
+    padding: 4px;
+    border-style: solid solid none solid;
+    border-width: 1px;
+    border-color: #ddd;
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.5);
+  }
+}

@@ -2,7 +2,7 @@
 import 'regenerator-runtime/runtime';
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from 'reducers';
-import createSagaMiddleware from 'redux-saga';
+import createSagaMiddleware, { END } from 'redux-saga';
 import { all } from 'redux-saga/effects';
 import getSagas from 'sagas';
 
@@ -31,18 +31,19 @@ export const configureStore = ({ initialState, middleware = [] }: StoreT = {}) =
     composeEnhancers(applyMiddleware(...[sagaMiddleware].concat(...middleware)))
   );
 
-  sagaMiddleware.run(function*() {
+  const rootTask = sagaMiddleware.run(function*() {
     yield all(getSagas());
   });
 
-  const compoundStore = {
-    store,
+  store.finishAllPendingTasks = () => {
+    store.dispatch(END);
+    return rootTask.done;
   };
   if (typeof window !== 'undefined') {
-    window.store = compoundStore;
+    window.store = store;
   }
 
-  return compoundStore;
+  return store;
 };
 
 export default configureStore;

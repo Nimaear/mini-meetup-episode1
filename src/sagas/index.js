@@ -1,4 +1,4 @@
 //@flow
-import appSagas from './app.sagas';
+import countrySagas from './country.sagas';
 
-export default () => [...appSagas];
+export default () => [...countrySagas];
